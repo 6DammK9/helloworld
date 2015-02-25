@@ -106,15 +106,12 @@ public class Post {
 		 */
 		@Override
 		public int hashCode() {
-			int hashCode = 0;
+			int hashCode = 23;
 			//TODO
 			//You should give hashCode a unique value?
 			//You can use the hashCode of your attributes
-			date.hashCode();
-			content.hashCode();
-			user.hashCode();
 			
-			return hashCode;
+			return hashCode*date.hashCode()*content.hashCode()*user.hashCode();
 			
 		}
 		

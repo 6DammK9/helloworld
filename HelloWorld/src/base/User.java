@@ -80,15 +80,11 @@ public class User {
 	 */
 	@Override
 	public int hashCode() {
-		int hashCode = 0;
+		int hashCode = 17;
 		//TODO
 		//You should give hashCode a unique value?
 		//You can use the hashCode of your attributes
-		hashCode += userId;
-		userName.hashCode();
-		userEmail.hashCode();
 		
-		return hashCode;
-		
+		return hashCode * userId * userName.hashCode() * userEmail.hashCode();
 	}
 }

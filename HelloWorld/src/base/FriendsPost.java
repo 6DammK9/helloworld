@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class FriendsPost extends Post{
 
-	private User friend;
+	//private User friend;
 	
 	//TODO
 	public FriendsPost(Date date, String content, User user){
