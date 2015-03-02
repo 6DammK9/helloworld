@@ -6,32 +6,31 @@ public class Post {
 
 		private Date date;
 		private String content;
-		private User user;
 		
 		/**
 		 * Constructor
 		 * @param date
 		 * @param content
-		 * @param user
-		 */
-		
-		public Post(Date date, String content, User user){
+		 */		
+		public Post(Date date, String content){
 			//TODO
 			this.date = date;
 			this.content = content;
-			this.user = user;
 		}
 		
-		/**
-		 * NOT FROM SAUCE: Empty constructor
-		 */
 		public Post(){
 			//TODO
 			this.date = new Date();
 			this.content = "";
-			this.user = new User();
 			
-			System.out.println("WARNING: Empty constructor");
+			//System.out.println("WARNING: Empty constructor");
+		}
+		
+		/**
+		 * @return the date of the blog
+		 */
+		public Date getDate(){
+			return this.date;
 		}
 		
 		/**
@@ -63,10 +62,7 @@ public class Post {
 		@Override
 		public String toString() {
 			//TODO
-			return 
-			user.toString() + "\n" + 
-			date.toString() + "\n" + 
-			content;
+			return date.toString() + "\n" + content;				
 		}
 		
 		/**
@@ -96,7 +92,6 @@ public class Post {
 			// In what circumstance will you think that post A is equal to post B?
 			if (!this.date.equals(post.date)) {return false;}
 			if (!this.content.equals(post.content)) {return false;}
-			if (!this.user.equals(post.user)) {return false;}
 			
 			return ans;
 		}
@@ -106,13 +101,11 @@ public class Post {
 		 */
 		@Override
 		public int hashCode() {
-			int hashCode = 23;
 			//TODO
 			//You should give hashCode a unique value?
 			//You can use the hashCode of your attributes
 			
-			return hashCode*date.hashCode()*content.hashCode()*user.hashCode();
-			
+			return date.hashCode() + content.hashCode();
 		}
 		
 		/**

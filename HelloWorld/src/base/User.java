@@ -1,5 +1,7 @@
 package base;
 
+import java.math.MathContext;
+
 public class User {
 	
 	private int userId;
@@ -23,7 +25,7 @@ public class User {
 		this.userName = "";
 		this.userEmail = "";
 		
-		System.out.println("WARNING: Empty constructor");
+		//System.out.println("WARNING: Empty constructor");
 	}
 	
 	/**
@@ -85,6 +87,6 @@ public class User {
 		//You should give hashCode a unique value?
 		//You can use the hashCode of your attributes
 		
-		return hashCode * userId * userName.hashCode() * userEmail.hashCode();
+		return (hashCode+userId) + userName.hashCode() + userEmail.hashCode();
 	}
 }
