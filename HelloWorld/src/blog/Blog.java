@@ -1,6 +1,7 @@
 package blog;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import base.*;
 
@@ -103,7 +104,6 @@ public class Blog {
 	 */
 	public boolean equals(Object o) {
 		
-		boolean ans = true;
 		// Should it be equal compared to itself?
 		if (o == this) {return true;}
 		
@@ -112,7 +112,7 @@ public class Blog {
 		
 		// Are they the same class?
 		// You can get the class of object o
-		o.getClass();
+		if (o.getClass() != getClass()) {return false;};
 		
 		// You can transfer object o to POST
 		Blog blog = (Blog) o;
@@ -121,7 +121,7 @@ public class Blog {
 		if (!this.user.equals(blog.user)) {return false;}
 		if (!this.allPosts.equals(blog.allPosts)) {return false;}	
 		
-		return ans;
+		return true;
 	}
 	
 	@Override
@@ -134,4 +134,36 @@ public class Blog {
 		return this.user.hashCode() + allPosts.hashCode();
 	}
 	
+
+	/**
+	 * Search posts created in month and mentioned someone
+	 * 
+	 * @param month
+	 * @param someone
+	 */
+	public void search(int month, String someone) {
+		
+		Calendar cal = Calendar.getInstance();
+		// search from all posts
+		for (Post p: allPosts) {
+			// get then current post's month (note that Calaendar.Month starts
+			// with 0, not 1)
+			cal.setTime(p.getDate());
+			int postMonth = cal.get(Calendar.MONTH) + 1;
+			
+			// TODO write your things here
+			if ((postMonth == month) && (p.getContent().contains(someone))) {
+				System.out.println(p);
+			}
+			
+		}
+	}
+
+	public void setPosts(ArrayList<Post> posts) {
+		if (posts != null) {
+			for (Post p: posts) {
+				allPosts.add(p);
+			}
+		}
+	}
 }

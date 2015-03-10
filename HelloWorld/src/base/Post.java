@@ -1,8 +1,9 @@
 package base;
 
+import java.util.Calendar;
 import java.util.Date;
 
-public class Post {
+public class Post implements Comparable<Post> {
 
 		private Date date;
 		private String content;
@@ -75,7 +76,6 @@ public class Post {
 		@Override
 		public boolean equals(Object o) {
 			
-			boolean ans = true;
 			// Should it be equal compared to itself?
 			if (o == this) {return true;}
 			
@@ -84,7 +84,7 @@ public class Post {
 			
 			// Are they the same class?
 			// You can get the class of object o
-			o.getClass();
+			if (o.getClass() != getClass()) {return false;};
 			
 			// You can transfer object o to POST
 			Post post = (Post) o;
@@ -93,7 +93,7 @@ public class Post {
 			if (!this.date.equals(post.date)) {return false;}
 			if (!this.content.equals(post.content)) {return false;}
 			
-			return ans;
+			return true;
 		}
 		
 		/**
@@ -136,6 +136,12 @@ public class Post {
 			//TODO
 			//return true;
 			return content.contains(keyword);
+		}
+
+		@Override
+		public int compareTo(Post p) {
+			// TODO Auto-generated method stub
+			return this.date.compareTo(p.date);
 		}
 }
 

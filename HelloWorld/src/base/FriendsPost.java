@@ -37,7 +37,6 @@ public class FriendsPost extends Post{
 	@Override
 	public boolean equals(Object o) {
 		
-		boolean ans = true;
 		// Should it be equal compared to itself?
 		if (o == this) {return true;}
 		
@@ -46,7 +45,7 @@ public class FriendsPost extends Post{
 		
 		// Are they the same class?
 		// You can get the class of object o
-		o.getClass();
+		if (o.getClass() != getClass()) {return false;};
 		
 		// You can transfer object o to POST
 		FriendsPost Fpost = (FriendsPost) o;
@@ -56,7 +55,7 @@ public class FriendsPost extends Post{
 		if (!this.getDate().equals(Fpost.getDate())) {return false;}
 		if (!this.getContent().equals(Fpost.getContent())) {return false;}		
 		
-		return ans;
+		return true;
 	}
 	
 	/**

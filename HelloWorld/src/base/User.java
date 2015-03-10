@@ -1,8 +1,6 @@
 package base;
 
-import java.math.MathContext;
-
-public class User {
+public class User implements Comparable<User> {
 	
 	private int userId;
 	private String userName;
@@ -55,7 +53,6 @@ public class User {
 	@Override
 	public boolean equals(Object o) {
 		
-		boolean ans = true;
 		// Should it be equal compared to itself?
 		if (o == this) {return true;}
 		
@@ -64,7 +61,7 @@ public class User {
 		
 		// Are they the same class?
 		// You can get the class of object o
-		o.getClass();
+		if (o.getClass() != getClass()) {return false;};
 		
 		// You can transfer object o to User
 		User user = (User) o;
@@ -74,7 +71,7 @@ public class User {
 		if (!this.userName.equals(user.userName)) {return false;}
 		if (!this.userEmail.equals(user.userEmail)) {return false;}
 		
-		return ans;
+		return true;
 	}
 	
 	/**
@@ -88,5 +85,13 @@ public class User {
 		//You can use the hashCode of your attributes
 		
 		return (hashCode+userId) + userName.hashCode() + userEmail.hashCode();
+	}
+
+	@Override
+	public int compareTo(User u) {
+		// TODO Auto-generated method stub
+		if (this.userId > u.userId) {return 1;}
+			else if (this.userId < u.userId) {return -1;}
+			else return 0;
 	}
 }
