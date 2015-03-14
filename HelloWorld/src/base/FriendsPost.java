@@ -4,6 +4,10 @@ import java.util.Date;
 
 public class FriendsPost extends Post{
 
+	/**
+	 * Don't know what it means; generated in auto
+	 */
+	private static final long serialVersionUID = 8517203547543118002L;
 	private User friend;
 	
 	//TODO

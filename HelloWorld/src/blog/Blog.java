@@ -13,6 +13,10 @@ import base.*;
 
 public class Blog implements Serializable {
 
+	/**
+	 * Don't know what it means; generated in auto
+	 */
+	private static final long serialVersionUID = -1807624484688578909L;
 	private User user;
 	private ArrayList<Post> allPosts;
 	

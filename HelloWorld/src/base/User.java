@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class User implements Comparable<User>, Serializable {
 	
+	/**
+	 * Don't know what it means; generated in auto
+	 */
+	private static final long serialVersionUID = 1111407784922779501L;
 	private int userId;
 	private String userName;
 	private String userEmail; 

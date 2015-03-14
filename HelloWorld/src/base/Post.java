@@ -5,6 +5,10 @@ import java.util.Date;
 
 public class Post implements Comparable<Post>, Serializable {
 
+	/**
+	 * Don't know what it means; generated in auto
+	 */
+	private static final long serialVersionUID = 6526266097594730252L;
 		private Date date;
 		private String content;
 		
