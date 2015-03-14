@@ -7,7 +7,7 @@ import base.User;
 
 public class TestObject {
 
-	public static void main0(String[] args) {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//System.out.println("Hello World 1.8");
 		

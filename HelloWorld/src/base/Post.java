@@ -1,9 +1,9 @@
 package base;
 
-import java.util.Calendar;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Post implements Comparable<Post> {
+public class Post implements Comparable<Post>, Serializable {
 
 		private Date date;
 		private String content;
@@ -66,46 +66,36 @@ public class Post implements Comparable<Post> {
 			return date.toString() + "\n" + content;				
 		}
 		
-		/**
-		 * Check whether this object equals object o
-		 * @param object o
-		 * @return Boolean
-		 * 
-		 */
-		
 		@Override
-		public boolean equals(Object o) {
-			
-			// Should it be equal compared to itself?
-			if (o == this) {return true;}
-			
-			// What if if object is null?
-			if (o == null) {return false;}
-			
-			// Are they the same class?
-			// You can get the class of object o
-			if (o.getClass() != getClass()) {return false;};
-			
-			// You can transfer object o to POST
-			Post post = (Post) o;
-			
-			// In what circumstance will you think that post A is equal to post B?
-			if (!this.date.equals(post.date)) {return false;}
-			if (!this.content.equals(post.content)) {return false;}
-			
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Post other = (Post) obj;
+			if (content == null) {
+				if (other.content != null)
+					return false;
+			} else if (!content.equals(other.content))
+				return false;
+			if (date == null) {
+				if (other.date != null)
+					return false;
+			} else if (!date.equals(other.date))
+				return false;
 			return true;
 		}
 		
-		/**
-		 * 
-		 */
 		@Override
 		public int hashCode() {
-			//TODO
-			//You should give hashCode a unique value?
-			//You can use the hashCode of your attributes
-			
-			return date.hashCode() + content.hashCode();
+			final int prime = 31;
+			int result = 1;
+			result = prime * result
+					+ ((content == null) ? 0 : content.hashCode());
+			result = prime * result + ((date == null) ? 0 : date.hashCode());
+			return result;
 		}
 		
 		/**

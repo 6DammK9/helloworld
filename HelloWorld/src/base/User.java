@@ -1,6 +1,8 @@
 package base;
 
-public class User implements Comparable<User> {
+import java.io.Serializable;
+
+public class User implements Comparable<User>, Serializable {
 	
 	private int userId;
 	private String userName;
@@ -43,48 +45,40 @@ public class User implements Comparable<User> {
 		"]";
 	}
 	
-	/**
-	 * Check whether this object equals object o
-	 * @param object o
-	 * @return Boolean
-	 * 
-	 */
-	
 	@Override
-	public boolean equals(Object o) {
-		
-		// Should it be equal compared to itself?
-		if (o == this) {return true;}
-		
-		// What if if object is null?
-		if (o == null) {return false;}
-		
-		// Are they the same class?
-		// You can get the class of object o
-		if (o.getClass() != getClass()) {return false;};
-		
-		// You can transfer object o to User
-		User user = (User) o;
-		
-		// In what circumstance will you think that User A is equal to User B?
-		if (this.userId != user.userId) {return false;}
-		if (!this.userName.equals(user.userName)) {return false;}
-		if (!this.userEmail.equals(user.userEmail)) {return false;}
-		
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (userEmail == null) {
+			if (other.userEmail != null)
+				return false;
+		} else if (!userEmail.equals(other.userEmail))
+			return false;
+		if (userId != other.userId)
+			return false;
+		if (userName == null) {
+			if (other.userName != null)
+				return false;
+		} else if (!userName.equals(other.userName))
+			return false;
 		return true;
 	}
 	
-	/**
-	 * 
-	 */
 	@Override
 	public int hashCode() {
-		int hashCode = 17;
-		//TODO
-		//You should give hashCode a unique value?
-		//You can use the hashCode of your attributes
-		
-		return (hashCode+userId) + userName.hashCode() + userEmail.hashCode();
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((userEmail == null) ? 0 : userEmail.hashCode());
+		result = prime * result + userId;
+		result = prime * result
+				+ ((userName == null) ? 0 : userName.hashCode());
+		return result;
 	}
 
 	@Override
@@ -93,5 +87,9 @@ public class User implements Comparable<User> {
 		if (this.userId > u.userId) {return 1;}
 			else if (this.userId < u.userId) {return -1;}
 			else return 0;
+	}
+	
+	public String getUserName() {
+		return this.userName;
 	}
 }

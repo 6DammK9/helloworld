@@ -27,45 +27,28 @@ public class FriendsPost extends Post{
 				this.getContent();				
 	}
 	
-	/**
-	 * Check whether this object equals object o
-	 * @param object o
-	 * @return Boolean
-	 * 
-	 */
-	
 	@Override
-	public boolean equals(Object o) {
-		
-		// Should it be equal compared to itself?
-		if (o == this) {return true;}
-		
-		// What if if object is null?
-		if (o == null) {return false;}
-		
-		// Are they the same class?
-		// You can get the class of object o
-		if (o.getClass() != getClass()) {return false;};
-		
-		// You can transfer object o to POST
-		FriendsPost Fpost = (FriendsPost) o;
-		
-		// In what circumstance will you think that post A is equal to post B?
-		if (!this.friend.equals(Fpost.friend)) {return false;}
-		if (!this.getDate().equals(Fpost.getDate())) {return false;}
-		if (!this.getContent().equals(Fpost.getContent())) {return false;}		
-		
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FriendsPost other = (FriendsPost) obj;
+		if (friend == null) {
+			if (other.friend != null)
+				return false;
+		} else if (!friend.equals(other.friend))
+			return false;
 		return true;
 	}
 	
-	/**
-	 * 
-	 */
 	@Override
 	public int hashCode() {
-		//TODO
-		//You should give hashCode a unique value?
-		//You can use the hashCode of your attributes
-		return friend.hashCode() + this.getDate().hashCode() + this.getContent().hashCode();
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((friend == null) ? 0 : friend.hashCode());
+		return result;
 	}
 }

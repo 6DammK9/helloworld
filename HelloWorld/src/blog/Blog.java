@@ -1,11 +1,17 @@
 package blog;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import base.*;
 
-public class Blog {
+public class Blog implements Serializable {
 
 	private User user;
 	private ArrayList<Post> allPosts;
@@ -99,39 +105,35 @@ public class Blog {
 	}
 	
 	@Override
-	/**
-	 * 
-	 */
-	public boolean equals(Object o) {
-		
-		// Should it be equal compared to itself?
-		if (o == this) {return true;}
-		
-		// What if if object is null?
-		if (o == null) {return false;}
-		
-		// Are they the same class?
-		// You can get the class of object o
-		if (o.getClass() != getClass()) {return false;};
-		
-		// You can transfer object o to POST
-		Blog blog = (Blog) o;
-		
-		// In what circumstance will you think that blog A is equal to blog B?
-		if (!this.user.equals(blog.user)) {return false;}
-		if (!this.allPosts.equals(blog.allPosts)) {return false;}	
-		
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Blog other = (Blog) obj;
+		if (allPosts == null) {
+			if (other.allPosts != null)
+				return false;
+		} else if (!allPosts.equals(other.allPosts))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
 		return true;
 	}
 	
 	@Override
-	/**
-	 * 
-	 * @return
-	 */
-	public int hashCode(){
-		//TODO
-		return this.user.hashCode() + allPosts.hashCode();
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((allPosts == null) ? 0 : allPosts.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		return result;
 	}
 	
 
@@ -165,5 +167,33 @@ public class Blog {
 				allPosts.add(p);
 			}
 		}
+	}
+	
+	public void save(String filepath) {
+		// TODO		
+		try {
+			FileOutputStream fs = new FileOutputStream(filepath);
+			ObjectOutputStream os = new ObjectOutputStream(fs);
+			os.writeObject(this);
+			os.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	public void load(String filepath) {
+		// TODO		
+		try {
+			FileInputStream fs = new FileInputStream(filepath);
+			ObjectInputStream os = new ObjectInputStream(fs);
+			Blog blog = (Blog)os.readObject();
+			this.user = blog.user;
+			this.allPosts = blog.allPosts;
+			os.close();
+		} catch (FileNotFoundException fnd) {
+			System.out.println("Wait! There is something wrong. I cannot find the file..");
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} 
 	}
 }
