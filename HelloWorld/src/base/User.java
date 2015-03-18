@@ -3,7 +3,7 @@ package base;
 import java.io.Serializable;
 
 public class User implements Comparable<User>, Serializable {
-	
+
 	/**
 	 * Don't know what it means; generated in auto
 	 */
@@ -11,16 +11,16 @@ public class User implements Comparable<User>, Serializable {
 	private int userId;
 	private String userName;
 	private String userEmail; 
-	
+
 	public User(int id, String name, String email) {
 		// TODO
 		// User user = new User(1, "COMP3021", "COMP3021@cse.ust.hk");
-		
+
 		this.userId = id;
 		this.userName = name;
 		this.userEmail = email;
 	}
-	
+
 	/**
 	 * NOT FROM SAUCE: Empty constructor
 	 */
@@ -28,27 +28,27 @@ public class User implements Comparable<User>, Serializable {
 		this.userId = 0;
 		this.userName = "";
 		this.userEmail = "";
-		
+
 		//System.out.println("WARNING: Empty constructor");
 	}
-	
+
 	/**
 	 * Output this object in string format
 	 * @return String
 	 * 
 	 */
-	
+
 	@Override
 	public String toString() {
 		//TODO
 		return 
-		"User [" + 
-		"userID=" + userId +
-		", userName=" + userName +
-		", userEmail=" + userEmail +
-		"]";
+				"User [" + 
+				"userID=" + userId +
+				", userName=" + userName +
+				", userEmail=" + userEmail +
+				"]";
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -72,7 +72,7 @@ public class User implements Comparable<User>, Serializable {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -89,10 +89,10 @@ public class User implements Comparable<User>, Serializable {
 	public int compareTo(User u) {
 		// TODO Auto-generated method stub
 		if (this.userId > u.userId) {return 1;}
-			else if (this.userId < u.userId) {return -1;}
-			else return 0;
+		else if (this.userId < u.userId) {return -1;}
+		else return 0;
 	}
-	
+
 	public String getUserName() {
 		return this.userName;
 	}

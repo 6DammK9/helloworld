@@ -14,9 +14,9 @@ public class TestIO {
 
 	public static void main(String[] args) {
 
-          System.out.println("****Creating a blog...******");
+		System.out.println("****Creating a blog...******");
 		User user = new User(1, "A", "a@cse.ust.hk");
-		
+
 		ArrayList<Post> allposts = new ArrayList<Post>();
 		// Month starts with 0, not 1
 		Calendar cal1 = new GregorianCalendar(2015, 02, 1); // March 1, 2015
@@ -32,39 +32,39 @@ public class TestIO {
 		Calendar cal2 = new GregorianCalendar(2015, 01, 18); // Feb 18, 2015
 		allposts.add(new Post(cal2.getTime(),
 				"Thanks @Amy for your beautiful gift"));
-		
+
 		Blog blog=new Blog(user);
 		blog.setPosts(allposts);
-          blog.list();
-		
-		
+		blog.list();
+
+
 		// *****************Task 1: save a blog to a file*************
 		System.out.println("\n***Saving the blog to an external file***");
 		String savefilepath="C:/Temp/"+user.getUserName()+".blog";
 		//if the path is not accessible, change it to any path you can access
 		System.out.println("File path: "+savefilepath);
 		blog.save(savefilepath);
-		
-		
-		
-		
+
+
+
+
 		/** 
 		 * Now please move the file you saved to another place, say D:/
 		 */
-		
-		
+
+
 
 		// ******************Task 2: load a blog from a file***********
 		// Comment the code below if you can't finish this task
 		System.out.println("\n***Loading a blog from an external file...***");
 		String loadfilepath="C:/Temp/"+user.getUserName()+"2.blog";
-		    //if the path is not accessible, change it to any path you can access
+		//if the path is not accessible, change it to any path you can access
 		System.out.println("File path: "+loadfilepath);
 		Blog newblog = new Blog(user);
 		newblog.load(loadfilepath);
 		newblog.list();
-		
-		
+
+
 		// ******************Task 3: Error handling *************
 		// Comment the code below if you can't finish this task
 		System.out.println("\n***Error handling..***");

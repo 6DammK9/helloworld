@@ -9,28 +9,28 @@ public class FriendsPost extends Post{
 	 */
 	private static final long serialVersionUID = 8517203547543118002L;
 	private User friend;
-	
+
 	//TODO
 	public FriendsPost(Date date, String content, User user){
 		//FriendsPost(date,content,user);
 		super(date, content);
 		this.friend = user;
 	}
-	
+
 	/**
 	 * Output this object in string format
 	 * @return String
 	 * 
 	 */
-	
+
 	@Override
 	public String toString() {
 		//TODO
 		return this.friend.toString() + "\n" + 
-				this.getDate().toString() + "\n" + 
-				this.getContent();				
+		this.getDate().toString() + "\n" + 
+		this.getContent();				
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -47,7 +47,7 @@ public class FriendsPost extends Post{
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
