@@ -1,6 +1,7 @@
 package test;
 
 import java.util.Date;
+import java.lang.*;
 
 import base.FriendsPost;
 import base.User;
@@ -19,6 +20,14 @@ public class TestObject {
 		
 		System.out.println(postFromFriend.contains("first"));
 		System.out.println(postFromFriend.contains("HKUST"));
+		//System.out.println(lol("aoe", -1000));
 	}
 
+	public static String lol (String a, int b) {
+		StringBuilder ans = new StringBuilder();
+		if(a != null)
+			for (char c:a.toCharArray())
+				ans.append( (char)((c+b%26) > 122 ? c-26+b%26 : ((c+b%26) < 97? c+26+b%26 : c+b%26)));
+		return ans.toString();
+	}
 }
