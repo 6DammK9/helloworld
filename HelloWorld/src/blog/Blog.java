@@ -1,15 +1,18 @@
 package blog;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import base.*;
+import base.Post;
+import base.User;
+
+
 
 public class Blog implements Serializable {
 
@@ -67,6 +70,11 @@ public class Blog implements Serializable {
 		System.out.println(p);
 	}
 	
+	public void add(Post p){
+		//TODO add Post p to your blog
+		allPosts.add(p);
+	}
+	
 	/**
 	 * list all posts in the blog
 	 * 
@@ -105,7 +113,13 @@ public class Blog implements Serializable {
 	 */
 	public String toString(){
 		//TODO
-		return "[Blog]";
+		// Return all the posts, line separated
+		StringBuffer ans = new StringBuffer();
+		if (allPosts != null)
+			for (int i = 0; i < allPosts.size(); i++) {
+				ans.append(allPosts.get(i) + "\n");
+			}
+		return ans.toString();
 	}
 	
 	@Override
@@ -199,5 +213,9 @@ public class Blog implements Serializable {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} 
+	}
+	
+	public ArrayList<Post> getAllposts(){
+		return allPosts;
 	}
 }
