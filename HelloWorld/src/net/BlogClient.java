@@ -1,4 +1,4 @@
-package client;
+package net;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,11 +25,14 @@ public class BlogClient {
 			BufferedReader stdIn =  new BufferedReader(
 					new InputStreamReader(System.in));
 		) {
-			String userInput = getPost().toString();
-			out.println(userInput);
+			//String userInput = getPost().toString();
+			//out.println(userInput);
+			String userInput;
 			while ((userInput = stdIn.readLine()) != null) {
+				if (userInput.equals("quit"))
+					break;
 				out.println(userInput);
-				System.out.println("Client: " + in.readLine());
+				System.out.println(in.readLine());
 			}
 			in.close(); stdIn.close();
 			clientSocket.close();
